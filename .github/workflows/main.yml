@@ -1,0 +1,29 @@
+name: Cypress Tests
+
+on: workflow_dispatch
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          command: npx cypress run --browser chrome --reporter mochawesome --reporter-options reportDir=cypress/reports
+
+      - name: Upload HTML Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cypress-HTML-Reports
+          path: cypress/reports
