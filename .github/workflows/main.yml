@@ -28,5 +28,5 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Cypress-HTML-Reports
-          path: cypress/reports
+          name: Cypress-HTML-Reports ${{ matrix.browsers }}
+          path: cypress/reports ${{ matrix.browsers }}
