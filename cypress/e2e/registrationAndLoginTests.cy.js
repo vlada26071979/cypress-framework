@@ -16,7 +16,7 @@ describe('Registration tests', () => {
         )
     })
 
-    it.only('Verify you can not register user with existing email address', () => {
+    it('Verify you can not register user with existing email address', () => {
         homePage.goToLoginPage()
         cy.get(loginSignupPage.inputSignupName).type("vlada79")
         cy.get(loginSignupPage.inputSignupЕmail).type("vlada79@gmail.com")
