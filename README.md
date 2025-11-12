@@ -29,11 +29,6 @@ The main goal is to create a scalable, maintainable, and easy-to-understand auto
 - Page Object Model (POM) pattern for cleaner code organization
 - License
 
----
-
-(This is an example structure — adjust according to your actual project.)
-
----
 
 ## 🚀 Installation and Setup  
 
@@ -47,15 +42,15 @@ The main goal is to create a scalable, maintainable, and easy-to-understand auto
    npm install
 
 
+## GITHUB ACTIONS
+    This framework includes a ready-to-use GitHub Actions workflow for CI.
+    The workflow automatically:
 
-This framework includes a ready-to-use GitHub Actions workflow for CI.
-The workflow automatically:
+    Checks out your repository
+    Installs dependencies
+    Runs Cypress tests in headless mode
 
-Checks out your repository
-Installs dependencies
-Runs Cypress tests in headless mode
+## 📜 License
 
-📜 License
-
-This project is open source and free to use for learning and development purposes.
+    This project is open source and free to use for learning and development purposes.
 
