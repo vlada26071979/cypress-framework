@@ -20,5 +20,3 @@ export class SignupLoginPageLocators {
     get inputMobilePhone() {return '[data-qa="mobile_number"]';}
     get buttonCreateAccount() {return '[data-qa="create-account"]';}
 }
-
-export const loginSignupPageLocators = new SignupLoginPageLocators()
