@@ -1,51 +1,65 @@
 class SignupLoginPage {
 
-    inputSignupName = '[data-qa="signup-name"]';
-    inputSignupЕmail = '[data-qa="signup-email"]';
-    buttonSignup = '[data-qa="signup-button"]';
-    inputLoginEmail = '[data-qa="login-email"]';
-    inputPassword = '[data-qa="login-password"]';
-    buttonLogin = '[data-qa="login-button"]';
+    get inputSignupName() { return '[data-qa="signup-name"]'; }
+    get inputSignupEmail() { return '[data-qa="signup-email"]'; }
+    get buttonSignup() { return '[data-qa="signup-button"]'; }
+    get inputLoginEmail() { return '[data-qa="login-email"]'; }
+    get inputLoginPassword() { return '[data-qa="login-password"]'; }
+    get buttonLogin() { return '[data-qa="login-button"]'; }
+    get inputRegistrationPassword() {return '[data-qa="password"]';}
+    get inputDays() {return '[data-qa="days"]';}
+    get inputMonths() {return '[data-qa="months"]';}
+    get inputYears() {return '[data-qa="years"]';}
+    get inputFirstName() {return '[data-qa="first_name"]';}
+    get inputLastName() {return '[data-qa="last_name"]';}
+    get inputAddress() {return '[data-qa="address"]';}
+    get dropdownCountry() {return '[data-qa="country"]';}
+    get inputState() {return '[data-qa="state"]';}
+    get inputCity() {return '[data-qa="city"]';}
+    get inputZipcode() {return '[data-qa="zipcode"]';}
+    get inputMobilePhone() {return '[data-qa="mobile_number"]';}
+    get buttonCreateAccount() {return '[data-qa="create-account"]';}
 
-    registerNewUser(username, email, password, firstName, lastName, address, country, state,city, zipcode, mobileNumber) {
-        cy.get('[data-qa="signup-name"]').type(username);
-        cy.get('[data-qa="signup-email"]').type(email);
-        cy.get('[data-qa="signup-button"]').click();
-        cy.contains('Enter Account Information').should('be.visible');
 
-        cy.get('[data-qa="password"]').type(password);
+    registerNewUser({ username, email, password, day, month, year, firstName, lastName, address, country, state, city, zipcode, mobileNumber }) {
+        cy.get(this.inputSignupName).type(username);
+        cy.get(this.inputSignupEmail).type(email);
+        cy.get(this.buttonSignup).click();
+        cy.contains('Enter Account Information').should('exist').should('be.visible');
 
-        cy.get('[data-qa="days"]').select('26');
-        cy.get('[data-qa="months"]').select('July');
-        cy.get('[data-qa="years"]').select('1979');
+        cy.get(this.inputRegistrationPassword).type(password);
+        cy.get(this.inputDays).select(day);
+        cy.get(this.inputMonths).select(month);
+        cy.get(this.inputYears).select(year);
 
-        cy.get('[data-qa="first_name"]').type(firstName);
-        cy.get('[data-qa="last_name"]').type(lastName);
-        cy.get('[data-qa="address"]').type(address);
+        cy.get(this.inputFirstName).type(firstName);
+        cy.get(this.inputLastName).type(lastName);
+        cy.get(this.inputAddress).type(address);
 
-        cy.get('[data-qa="country"]').select(country);
-        cy.get('[data-qa="state"]').type(state);
-        cy.get('[data-qa="city"]').type(city);
-        cy.get('[data-qa="zipcode"]').type(zipcode);
-        cy.get('[data-qa="mobile_number"]').type(mobileNumber);
+        cy.get(this.dropdownCountry).select(country);
+        cy.get(this.inputState).type(state);
+        cy.get(this.inputCity).type(city);
+        cy.get(this.inputZipcode).type(zipcode);
+        cy.get(this.inputMobilePhone).type(mobileNumber);
         
-        cy.get('[data-qa="create-account"]').click();
-        cy.contains('Account Created!').should('be.visible');     
+        cy.get(this.buttonCreateAccount).click();
+        cy.contains('Account Created!').should('exist').should('be.visible');     
     };
 
-     loginAndLogout(email, password) {
+    login(email, password) {
         cy.get(this.inputLoginEmail).type(email);
-        cy.get(this.inputPassword).type(password);
+        cy.get(this.inputLoginPassword).type(password);
         cy.get(this.buttonLogin).click();
         cy.contains(`Logged in as ${email.split("@")[0]}`).should('be.visible');
+        }
+
+     loginAndLogout(email, password) {
+        this.login(email, password);
         cy.contains('Logout').click();
     };
 
     loginToApplicationAndDeleteAccount(email, password) {
-        cy.get(this.inputLoginEmail).type(email);
-        cy.get(this.inputPassword).type(password);
-        cy.get(this.buttonLogin).click();
-        cy.contains(`Logged in as ${email.split("@")[0]}`).should('be.visible');
+        this.login(email, password);
         cy.contains('Delete Account').click();
     };
    
