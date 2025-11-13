@@ -5,6 +5,15 @@ class HomePage {
         cy.contains('New User Signup!').should('be.visible');
         cy.contains('Login to your account').should('be.visible');
     };
+
+    goToTestCasesPage() {
+        cy.contains('Test Cases').click();
+    }
+
+    goToContactUsPage() {
+        cy.contains('Contact us').click()
+        cy.contains('Get In Touch').should('be.visible')
+    }
 };
 
 

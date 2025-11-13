@@ -6,5 +6,6 @@ declare namespace Cypress {
      * Command to open home page of application
      */
     openApplication(): Chainable<void>
+    login(): Chainable<void>
   }
 }

@@ -23,8 +23,14 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import 'cypress-file-upload';
+const { loginSignupPage } = require("../page-objects/signupLoginPage")
 
 Cypress.Commands.add('openApplication', () => {
-    cy.visit("/")
-    cy.contains('Signup / Login').should('be.visible')
+    cy.visit("/");
+    cy.contains('Signup / Login').should('be.visible');
+})
+
+Cypress.Commands.add('login', (username, password) => {
+    loginSignupPage.login(username, password);
 })
