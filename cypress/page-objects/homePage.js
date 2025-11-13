@@ -11,8 +11,13 @@ class HomePage {
     }
 
     goToContactUsPage() {
-        cy.contains('Contact us').click()
-        cy.contains('Get In Touch').should('be.visible')
+        cy.contains('Contact us').click();
+        cy.contains('Get In Touch').should('be.visible');
+    }
+
+    goToProductsPage() {
+        cy.contains('Products').click()
+        cy.contains('All Products').should('be.visible')
     }
 };
 
