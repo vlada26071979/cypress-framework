@@ -10,7 +10,7 @@ beforeEach('Open application', () => {
 describe('Test cases on the Products page', () => {
     it('Verify all products are displayed and verify first product details are displayed', () => {
         homePage.goToProductsPage();
-        productsPage.verifyAllProductsAreDisplayed(34);
+        productsPage.verifyAllProductsAreDisplayed(34, productsPage.allProducts);
        
         productsPage.clickViewFirstProduct();
         productDetailsPage.verifyYouAreOnProductDetailsPage();
