@@ -1,4 +1,6 @@
 const { homePage } = require("../page-objects/homePage");
+const { productDetailsPage } = require("../page-objects/productDetailsPage");
+const { productsPage } = require("../page-objects/productsPage");
 
 beforeEach('Open application', () => {
     cy.openApplication(); 
@@ -6,13 +8,21 @@ beforeEach('Open application', () => {
 
 
 describe('Test cases on the Products page', () => {
-    it('Verify all products are displayed', () => {
+    it('Verify all products are displayed and verify first product details are displayed', () => {
         homePage.goToProductsPage();
+        productsPage.verifyAllProductsAreDisplayed();
+       
+        productsPage.clickViewFirstProduct();
+        productDetailsPage.verifyYouAreOnProductDetailsPage();
 
-        cy.log('🔹 Verifying that all 34 products are displayed')
-        cy.get('.single-products')
-        .should('be.visible')
-        .should('have.length', 34);
+        productDetailsPage.verifyProductDetailsAreDisplayed({
+            productName: 'Blue Top',
+            category: 'Category: Women > Tops',
+            price: 'Rs. 500',
+            availability: 'In Stock',
+            condition: 'New',
+            brand: 'Polo'
+        });
     });
 
 });
