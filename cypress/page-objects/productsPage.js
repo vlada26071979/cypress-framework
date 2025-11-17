@@ -6,11 +6,11 @@ class ProductsPage extends ProductsPageLocators {
         cy.contains(this.linkViewProductFirst).click()
    };
 
-   verifyAllProductsAreDisplayed() {
-    cy.log('🔹 Verifying that all 34 products are displayed')
+   verifyAllProductsAreDisplayed(expectedProductsNumber) {
+    cy.log(`🔹 Verifying that all ${expectedProductsNumber} products are displayed`)
     cy.get(this.allProducts)
     .should('be.visible')
-    .should('have.length', 34);
+    .should('have.length', expectedProductsNumber);
    };
 
 }
