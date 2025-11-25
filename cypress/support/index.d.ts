@@ -7,5 +7,6 @@ declare namespace Cypress {
      */
     openApplication(): Chainable<void>
     login(): Chainable<void>
+    verifyTextIsDisplayed(): Chainable<void>
   }
 }

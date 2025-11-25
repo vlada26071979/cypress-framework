@@ -1,4 +1,6 @@
-class HomePage {
+import { HomePageLocators } from "./locators/homePageLocators";
+
+class HomePage extends HomePageLocators{
 
     goToLoginPage() {
         cy.contains('Signup / Login').click();
@@ -16,17 +18,21 @@ class HomePage {
     }
 
     goToProductsPage() {
-        cy.contains('Products').click()
-        cy.contains('All Products').should('be.visible')
+        cy.contains('Products').click();
+        cy.contains('All Products').should('be.visible');
     }
+
+    goToCartPage() {
+        cy.contains(this.linkCart).click()
+        cy.contains('Cart is empty!').should('be.visible')
+    }
+
+    subscribe(email) {
+        cy.get(this.inputSubscribeEmail).type(email)
+        cy.get(this.buttonSubscribe).click()
+    }
+
 };
-
-
-
-
-
-
-
 
 
 

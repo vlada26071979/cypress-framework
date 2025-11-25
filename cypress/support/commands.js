@@ -34,3 +34,7 @@ Cypress.Commands.add('openApplication', () => {
 Cypress.Commands.add('login', (username, password) => {
     loginSignupPage.login(username, password);
 })
+
+Cypress.Commands.add('verifyTextIsDisplayed', (text) => {
+    cy.contains(text).should('be.visible')
+})
